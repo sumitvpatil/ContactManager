@@ -1,0 +1,32 @@
+<app-navbar-home></app-navbar-home>
+<div class="container custom-container p-3">
+    <h2 class="custom-header text-center">ADD CONTACT</h2>
+    <form #regForm="ngForm" (ngSubmit)="onSubmit()">
+        <div [innerText]="message" [hidden]="isError" class="alert alert-danger"></div>
+        <div [innerText]="message" [hidden]="isSuccess" class="alert alert-success"></div>
+        <input type="text" [class.is-invalid]="contactName.invalid && contactName.touched" [class.is-valid]="contactName.valid && contactName.touched" required pattern="^[a-zA-Z ]+$" #contactName="ngModel" class="form-control mt-4" placeholder="Contact Name" name="name" [(ngModel)]="contact.contactName">
+        <div *ngIf="contactName.errors && (contactName.invalid && contactName.touched)">
+            <h6 class="text-danger" *ngIf="contactName.errors.required">Full Name is required</h6>
+            <h6 class="text-danger" *ngIf="contactName.errors.pattern">Enter a valid Full Name</h6>
+        </div>
+        <input type="text" [class.is-invalid]="email.invalid && email.touched" [class.is-valid]="email.valid && email.touched" required pattern="^[a-z0-9]+@[a-z]+\.[a-z]+.[a-z]+$" #email="ngModel" class="form-control mt-3" placeholder="Email address" name="email" [(ngModel)]="contact.contactEmail">
+        <div *ngIf="email.errors && (email.invalid && email.touched)">
+            <h6 class="text-danger" *ngIf="email.errors.required">Email is required</h6>
+            <h6 class="text-danger" *ngIf="email.errors.pattern">Enter a valid Email</h6>
+        </div>
+        <input type="string" [class.is-invalid]="phone.invalid && phone.touched" [class.is-valid]="phone.valid && phone.touched" required #phone="ngModel" pattern="^[0-9]+$" class="form-control mt-3" minlength="10" maxlength="10" placeholder="Phone Number" name="phone" [(ngModel)]="contact.contactPhone">
+        <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+            <h6 class="text-danger" *ngIf="phone.errors.required">Phone Number is required</h6>
+            <h6 class="text-danger" *ngIf="phone.errors.minlength">Phone Number must be at least 10 digits</h6>
+            <h6 class="text-danger" *ngIf="phone.errors.pattern">Phone Number must only contain numbers</h6>
+        </div>
+        <input type="text" [class.is-invalid]="type.invalid && type.touched" [class.is-valid]="type.valid && type.touched" required pattern="^[a-zA-z ]+$" #type="ngModel" class="form-control mt-3" placeholder="Contact Type" name="type" [(ngModel)]="contact.contactType">
+        <div *ngIf="type.errors && (type.invalid && type.touched)">
+            <h6 class="text-danger" *ngIf="type.errors.required">Type is required</h6>
+            <h6 class="text-danger" *ngIf="type.errors.pattern">Enter a valid Type</h6>
+        </div>
+        <div class="login-button text-center pt-4">
+            <button [disabled]="regForm.form.invalid" class="btn btn-primary">Add Contact</button>
+        </div>
+    </form>
+</div>

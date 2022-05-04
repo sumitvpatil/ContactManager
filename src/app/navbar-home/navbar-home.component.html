@@ -1,0 +1,12 @@
+<div class="row custom-row" style="background-color:#e3f2fd;">
+    <div class="col-3">
+        <h4 class="my-3">CONTACT MANAGER</h4>
+    </div>
+    <div class="col text-end p-3">
+        <a [class.link-border]="true" class="links" routerLink="" *ngIf="!isShow" (click)="onList()">Contact List</a>
+        <a [class.link-border]="nh.isHome" class="links" routerLink="" (click)="onHomeClick()" *ngIf="isShow">Home</a>
+        <a [class.link-border]="nh.isRegister" class="links" routerLink="/register" (click)="onRegisterClick()" *ngIf="isShow">Register</a>
+        <a [class.link-border]="nh.isAbout" class="links" routerLink="/about" (click)="onAboutClick()" *ngIf='isShow'>About Us</a>
+        <a class="links" *ngIf="!isShow" (click)="onLogout()">Logout</a>
+    </div>
+</div>

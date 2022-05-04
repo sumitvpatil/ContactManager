@@ -1,0 +1,11 @@
+<app-navbar-home></app-navbar-home>
+<div class="container custom-container mt-5">
+    <h4 class="header text-center">Contact List</h4>
+    <h5 *ngIf="contactList.length==0">No Contacts Found</h5>
+    <app-list [contact]="contact" *ngFor="let contact of contactList"></app-list>
+    <div class="create-btn text-end me-3 mt-4">
+        <a routerLink="add"><button class='btn btn-success'>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </button></a>
+    </div>
+</div>

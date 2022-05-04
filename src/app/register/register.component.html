@@ -1,0 +1,33 @@
+<app-navbar-home></app-navbar-home>
+<div class="container custom-container p-3">
+    <h2 class="custom-header text-center">USER REGISTRATION</h2>
+    <form #regForm="ngForm" (ngSubmit)="onSubmit()">
+        <div [innerText]="message" [hidden]="iserror" class="alert alert-danger"></div>
+        <div [innerText]="message" [hidden]="isSuccess" class="alert alert-success"></div>
+        <input type="text" [class.is-invalid]="fullname.invalid && fullname.touched" [class.is-valid]="fullname.valid && fullname.touched" required pattern="^[a-zA-Z ]+$" #fullname="ngModel" class="form-control mt-4" placeholder="Full Name" name="name" [(ngModel)]="user.fullname">
+        <div *ngIf="fullname.errors && (fullname.invalid && fullname.touched)">
+            <h6 class="text-danger" *ngIf="fullname.errors.required">Full Name is required</h6>
+            <h6 class="text-danger" *ngIf="fullname.errors.pattern">Enter a valid Full Name</h6>
+        </div>
+        <input type="text" [class.is-invalid]="email.invalid && email.touched" [class.is-valid]="email.valid && email.touched" required pattern="^[a-z0-9]+@[a-z]+\.[a-z]+.[a-z]+$" #email="ngModel" class="form-control mt-3" placeholder="Email address" name="email" [(ngModel)]="user.email">
+        <div *ngIf="email.errors && (email.invalid && email.touched)">
+            <h6 class="text-danger" *ngIf="email.errors.required">Email is required</h6>
+            <h6 class="text-danger" *ngIf="email.errors.pattern">Enter a valid Email</h6>
+        </div>
+        <input type="password" [class.is-invalid]="password.invalid && password.touched" [class.is-valid]="password.valid && password.touched" required #password="ngModel" class="form-control mt-3" minlength="6" placeholder="Password" name="pass" [(ngModel)]="user.password">
+        <div *ngIf="password.errors && (password.invalid && password.touched)">
+            <h6 class="text-danger" *ngIf="password.errors.required">Password is required</h6>
+            <h6 class="text-danger" *ngIf="password.errors.minlength">Password must be at least 6 characters long</h6>
+        </div>
+        <input type="password" [class.is-invalid]="password.value!=confirmPassword.value && confirmPassword.touched" [class.is-valid]="password.value==confirmPassword.value && confirmPassword.touched" required #confirmPassword="ngModel" class="form-control mt-3" placeholder="Confirm Password" name="cpass" [(ngModel)]="this.confpass">
+        <div *ngIf="(confirmPassword.errors && (confirmPassword.invalid && confirmPassword.touched))||password.value!=confirmPassword.value && confirmPassword.touched">
+            <h6 class="text-danger">Password did not match</h6>
+        </div>
+        <div class="login-button text-center pt-4">
+            <button class="btn btn-primary" [disabled]="regForm.form.invalid || password.value!=confirmPassword.value">Register</button>
+        </div>
+        <div [hidden]="isLogin" class="new-button text-center mt-4">
+            <a routerLink=""><button class="btn btn-success">Login</button></a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,17 @@
+<div class="container custom-container p-3">
+    <h2 class="custom-header text-center">LOGIN</h2>
+    <form #logForm="ngForm" (ngSubmit)="onLogin()">
+        <div [innerText]="message" [hidden]="isError" class="alert alert-danger"></div>
+        <div [innerText]="message" [hidden]="isSuccess" class="alert alert-success"></div>
+        <input type="text" [class.is-invalid]="email.invalid && email.touched" required #email="ngModel" class="form-control mt-4" placeholder="Email address" name="email" [(ngModel)]="user.email">
+        <h6 class="text-danger" *ngIf="email.invalid && email.touched">Email is required</h6>
+        <input type="password" [class.is-invalid]="password.invalid && password.touched" required class="form-control mt-3" placeholder="Password" #password="ngModel" name="pass" [(ngModel)]="user.password">
+        <h6 class="text-danger" *ngIf="password.invalid && password.touched">Password is required</h6>
+        <div class="login-button text-center pt-4">
+            <button class="btn btn-primary">Login</button>
+        </div>
+        <div class="create-button text-center mt-4">
+            <a routerLink="/register"><button class="btn btn-success">Create New Account</button></a>
+        </div>
+    </form>
+</div>

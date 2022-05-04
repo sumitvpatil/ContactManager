@@ -1,0 +1,11 @@
+.custom-row{
+    height:80vh;
+    margin:0;
+}
+.custom-column{
+    border-right:1px solid white;
+}
+.loggedIn{
+    padding-top:150px;
+    color:white;
+}

@@ -1,0 +1,23 @@
+<div class="main-div m-2">
+    <span class="p-2 cName">{{contact.contactName}}</span>
+    <button [class.rotate-btn]="visible" class="arrow btn" (click)="onClick()">
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+    </button>
+    <div class="child-div mt-3" [class]="visible?'display-full':'display-none'">
+        <div class="row custom-row" *ngIf="visible">
+            <div class="col-4">
+                <strong>Email : </strong>{{contact.contactEmail}}
+            </div>
+            <div class="col-4">
+                <strong>Phone : </strong>{{contact.contactPhone}}
+            </div>
+            <div class="col-3">
+                <strong>Type : </strong>{{contact.contactType}}
+            </div>
+            <div class="col-1">
+                <a routerLink="/contactlist/edit/{{contact._id}}"><button class='btn btn-outline-success'>Edit</button></a>
+                <a href="/contactlist"><button class="btn btn-outline-danger mt-2" (click)="onDelete()">Delete</button></a>
+            </div>
+        </div>
+    </div>
+</div>
